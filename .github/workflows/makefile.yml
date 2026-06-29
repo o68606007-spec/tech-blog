@@ -27,7 +27,7 @@ jobs:
         run: npm run build          # ビルドする
 
       - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25 # Vercelにデプロイする。
+        uses: amondnet/vercel-action@latest # Vercelにデプロイする。
         with:                            # with以降に必要なパラメータを渡す
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
