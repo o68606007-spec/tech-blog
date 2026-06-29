@@ -12,23 +12,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out the code
-        uses: actions/checkout@v4   # リポジトリのコードをクローンする
+      - uses: actions/checkout@v4   # リポジトリのコードをクローンする
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4 # node.jsをセットアップする
+      - uses: actions/setup-node@v4 # node.jsをセットアップする
         with:
-          node-version: '24'        # nodeのバージョン24を指定
+          node-version: '22'        # nodeのバージョン22を指定
 
-      - name: Install dependencies
-        run: npm install            # 依存関係をインストール
+      - run: npm ci
 
-      - name: Build Next.js project
-        run: npm run build          # ビルドする
+      - run: npm install -g vercel@latest
 
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@47.2.2 # Vercelにデプロイする。
-        with:                            # with以降に必要なパラメータを渡す
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+      - run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
