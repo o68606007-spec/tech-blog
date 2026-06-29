@@ -20,6 +20,8 @@ jobs:
 
       - run: npm ci
 
+      - run: npm run test
+
       - run: npm install -g vercel@latest
 
       - run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
