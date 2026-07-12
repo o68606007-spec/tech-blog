@@ -22,7 +22,8 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "types": ["jest", "vitest/globals"],
   },
   "include": [
     "next-env.d.ts",
