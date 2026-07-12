@@ -3,6 +3,7 @@ import { QiitaResponse } from "../../domain/Articles";
 
 export default async function QiitaArticles() {
     'use cache';
+    console.log(process.env.QIITA_API_KEY);
     const response = await axios.get<QiitaResponse[]>(
         "https://qiita.com/api/v2/items?query=user:o68606007&per_page=4",
         {
