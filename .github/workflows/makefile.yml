@@ -23,6 +23,8 @@ jobs:
       - run: npm run test
 
       - run: npm install -g vercel@latest
+        env:
+          QIITA_API_KEY: ${{ secrets.QIITA_API_KEY }}
 
       - run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
         env:
