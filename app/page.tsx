@@ -10,7 +10,7 @@ export default async function Home() {
     return (
         <>
             <div className="space-y-12">
-                {/* Hero */}
+                {/* Hero1 */}
                 <Hero />
 
                 {/* Qiita Section */}
